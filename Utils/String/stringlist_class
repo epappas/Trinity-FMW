@@ -1,0 +1,143 @@
+<?php
+   /*
+    *   StringList Class v1.0.1
+    * ============================================================
+    * Kodlayan: Tufan Bar&#305;&#351; YILDIRIM
+    * Website : http://www.tufyta.com 
+    * ===================Versiyon Notlar&#305;=========================
+    *  v1.0.1
+    * ========
+    * -- SaveToFile() And ReadFromFile() Added.
+    *  v1.0.0
+    * ========
+    * -- a talented class i have seen in Delpi StringList
+    */
+  class StringList{
+      
+          private $Values=array();
+          private $Text;
+          private $Lines=array();
+          
+           /**
+           * It's constructor func  
+           * 
+           * @param mixed $string String you want parse.
+           * @return StringList
+           */
+          public function  StringList($string){
+              
+              $this->Text=$string;
+              $this->Lines=explode("\n",$string);
+              $Count=count($this->Lines);
+              
+              Foreach ($this->Lines As $LineText){
+                  $EsitPos=strpos($LineText,'=');
+                 $this->Values[substr($LineText,0,$EsitPos)]=substr($LineText,$EsitPos+1,strlen($LineText)); 
+              }
+              
+              return $this; 
+          }
+          /**
+          * Return The Text Or Set Text (ReCreate Object).
+          * 
+          * @param mixed $SetTex it will change if it assigned
+          * @return StringList
+          */
+          public function Text($SetTex=False){
+              if($SetTex){
+                return $this->StringList($SetTex);  
+              } else {
+                  return  $this->Text;    
+              }
+               
+          }
+          /**
+          * It can return A Line or All Lines Or Set The Lines ( ReCreate Object )
+          * 
+          * @param mixed $LinesArray if is numeric it will return Line with this number .
+          * @return StringList
+          */
+          public function Lines($LinesArray=false){
+                 if(is_array($LinesArray)){   
+                return $this->StringList(implode("\n",$LinesArray));  
+              } elseif(is_numeric($LinesArray)) {
+                  return  $this->Lines[$LinesArray];    
+              }else {
+                  return $this->Lines;
+              }
+              }
+         /**
+         * You Can add Line Or Lines by Array.
+         * @param mixed $LineOrLines
+         */
+          public function Add($LineOrLines){
+                  if(strstr($LineOrLines,"\n")){
+                      $Lines=explode("\n",$LineOrLines);
+                  }else {
+                      $Lines[]=$LineOrLines;
+                  }
+                  
+                  Foreach($Lines As $Line){
+                      $this->Lines[]=$Line;
+                  }
+                  return $this;
+          }
+          /**
+          * Save Text to File.
+          * @param mixed $FileName Dosya Ad&#305;
+          */
+          public function SaveToFile($FileName='UnnamedStringlistFile'){
+              if($fileOpened=@fopen($FileName,'w+')){
+                  fwrite($this->Text);
+                  fclose($fileOpened);
+              }
+          }
+          /**
+          * Read Text From File (Recreate Object)
+          * 
+          * @param mixed $FileName
+          */
+          public function ReadFromFile($FileName){
+              if(is_file($FileName) && is_readable($FileName)){
+                   $this->StringList(file_get_contents($FileName));
+              }
+              return $this;
+          }
+          
+          /**
+          * PROPERTIES
+          */
+          public function Values($Name=false,$SetValue=False){
+              if($Name){
+              if($SetValue){
+                  foreach($this->Values AS $valName=>$valValue){
+                      $Lines[]=$valName.'='.$valValue."\n";
+                  }
+                  $this->Lines($Lines);
+              }
+              else {
+                   return $this->Values[$Name];
+              }
+          }
+          else {
+              return $this->Values;
+          }
+          }
+          
+          
+          public function Count(){ 
+              return Count($this->Lines);
+              
+          }
+          
+          /**
+          * This func is only for show ->Lines()->Add()  etc on PHP Editores 
+          * 
+          */
+          private function ForPhpEditores(){
+              die('Don\'t Use This Function.!');
+              $this->Text=new StringList('');
+              $this->Lines=new StringList('');
+          }
+  }
+?>
