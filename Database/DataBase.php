@@ -32,7 +32,7 @@ abstract class Database
 
 
     /**
-     * Initiate and Creates a Connecytio to the SQL Server Acording
+     * Initiate and Creates a Connection with the DB Server Acording
      * to Parameters
      * @param String $dbHost
      * @param String $dbUser
@@ -65,16 +65,7 @@ abstract class Database
     }
 
     /**
-     * A method that Unsets and Close the DB Connection
-     */
-//    function  __destruct()
-//    {
-//        $this->closeDB();
-//        $this->freeResultSet();
-//    }
-
-    /**
-     * This Method is used to connect PHP with the Server
+     * This Method is used to connect PHP with the DB Server
      */
     abstract public function connectDB();
 

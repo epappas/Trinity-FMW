@@ -1,12 +1,12 @@
 <?php
 /**
- * @author GiAr - papas.evagelos@gmail.com
+ * @author Pappas Evangelos - BagosGiAr - papas.evagelos@gmail.com
  * @copyright 2010
  *
  */
 
 //Basics Includes
-//require_once ('include/Database/DataBase.php');
+require_once ('DataBase.php');
 
 /**
  * Abstract Class For DBObjects Like Users, News, Fors etc

@@ -1,12 +1,11 @@
 <?php
 /**
- * @author GiAr - papas.evagelos@gmail.com
+ * @author Pappas Evangelos - BagosGiAr - papas.evagelos@gmail.com
  * @copyright 2010
  *
  */
 //Basics Includes
-//require_once('include/Config/dbinfo.php'); //DB infoes
-//require_once ('include/Database/DataBase.php');
+require_once ('DataBase.php');
 
 /**
  * A class about MySQL Connection and Managment Queries Extending a Database Class

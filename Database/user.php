@@ -6,10 +6,7 @@
  */
 
 //Basics Includes
-//include_once('include/Config/dbinfo.php'); //DB infoes
-//include_once('include/Database/DBObject.php');
-//include_once('../Config/dbinfo.php'); //DB infoes
-//include_once('DBObject.php');
+require_once('DBObject.php');
 
 /**
  * @author Pappas Evangelos - BagosGiAr - papas.evagelos@gmail.com
